@@ -1,0 +1,6 @@
+{
+    "files": ["script.ts"],
+    "compilerOptions": {
+        "outFile": "script.js",
+    }
+}
