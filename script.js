@@ -4,6 +4,8 @@ var reverseSigmoid = function (y) {
     return Math.log(y / (1 - y));
 };
 var sigmoidDerivative = function (x) { return sigmoid(x) * (1 - sigmoid(x)); };
+var dSigmoid = function (x) { return x * (1 - x); };
+var LR = 0.01;
 var inputs = [
     [0, 0],
     [1, 0],
@@ -146,6 +148,7 @@ var NeuralNetwork = /** @class */ (function () {
                 if (link.source instanceof Neuron) {
                     link.source.error = (link.strength / linkSum) * error;
                 }
+                link.strength += error * dSigmoid(link.thisTime) * LR;
             }
         }
     };

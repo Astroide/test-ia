@@ -5,6 +5,9 @@ const reverseSigmoid = (y: number) => {
 }
 
 const sigmoidDerivative = (x: number) => sigmoid(x) * (1 - sigmoid(x));
+const dSigmoid = (x: number) => x * (1 - x);
+
+const LR = 0.01;
 
 const inputs = [
     [0, 0],
@@ -146,6 +149,7 @@ class NeuralNetwork {
                 if (link.source instanceof Neuron) {
                     link.source.error = (link.strength / linkSum) * error;
                 }
+                link.strength += error * dSigmoid(link.thisTime) * LR;
             }
         }
     }
