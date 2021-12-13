@@ -149,7 +149,7 @@ class NeuralNetwork {
                 if (link.source instanceof Neuron) {
                     link.source.error = (link.strength / linkSum) * error;
                 }
-                link.strength += error * sigmoidDerivative(node.input) * link.source.output * LR;
+                link.strength += error * sigmoidDerivative(node.input) * dSigmoid(link.source.output) * LR;
             }
         }
     }
